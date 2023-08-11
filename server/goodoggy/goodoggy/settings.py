@@ -9,12 +9,12 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -42,9 +42,25 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'goodoggy'
 ]
 
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': ['https://www.googleapis.com/auth/gmail.readonly'],
+#         'AUTH_PARAMS': {'access_type': 'offline'},
+#     }
+# }
+
 SITE_ID = 1
+
+# SOCIALACCOUNT_LOGIN_ON_GET = True
+# LOGIN_REDIRECT_URL = '/'
+# ACCOUNT_LOGOUT_REDIRECT_URL = 'index'
+# ACCOUNT_LOGOUT_ON_GET = True 
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = 'none' 
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,7 +77,7 @@ ROOT_URLCONF = 'goodoggy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR], #
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
