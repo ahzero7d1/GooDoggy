@@ -23,7 +23,8 @@ SCOPES = ['https://mail.google.com/',
           'https://www.googleapis.com/auth/gmail.readonly',
           'https://www.googleapis.com/auth/gmail.send',
           'https://www.googleapis.com/auth/gmail.settings.basic',
-          'https://www.googleapis.com/auth/gmail.settings.sharing'
+          'https://www.googleapis.com/auth/gmail.settings.sharing',
+          'https://www.googleapis.com/auth/gmail.modify'
           ]
 
 
@@ -65,6 +66,7 @@ def gmail_quickstart(request):
     except HttpError as error:
         # TODO(developer) - Handle errors from gmail API.
         print(f'An error occurred: {error}')
+        
     return render(request, 'read.html')
     #return render(request, 'read.html', {'message': message})
 

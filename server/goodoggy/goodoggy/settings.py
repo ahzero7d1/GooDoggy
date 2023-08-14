@@ -45,17 +45,25 @@ INSTALLED_APPS = [
     'goodoggy'
 ]
 
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'SCOPE': ['https://www.googleapis.com/auth/gmail.readonly'],
-#         'AUTH_PARAMS': {'access_type': 'offline'},
-#     }
-# }
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
 
 SITE_ID = 1
 
-# SOCIALACCOUNT_LOGIN_ON_GET = True
-# LOGIN_REDIRECT_URL = '/'
+SOCIALACCOUNT_LOGIN_ON_GET = True
+# SOCIALACCOUNT_QUERY_EMAIL = True
+# SOCIALACCOUNT_AUTO_SIGNUP = True
+# LOGIN_REDIRECT_URL = '/#'
 # ACCOUNT_LOGOUT_REDIRECT_URL = 'index'
 # ACCOUNT_LOGOUT_ON_GET = True 
 # ACCOUNT_EMAIL_REQUIRED = True
@@ -71,6 +79,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# ]
 
 ROOT_URLCONF = 'goodoggy.urls'
 
