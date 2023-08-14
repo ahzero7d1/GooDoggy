@@ -1,13 +1,20 @@
 from __future__ import print_function
 
-import os.path
-
+#import os.path
+import os
+import requests
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from decouple import config
+from django.http import JsonResponse
+from decouple import config
+import requests
+import os
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://mail.google.com/',
@@ -71,9 +78,54 @@ def gmail_quickstart(request):
     #return render(request, 'read.html', {'message': message})
 
 
+def check_domain_safety(domain):
+    api_key = config('GOOGLE_API_KEY')
+    url = f"https://safebrowsing.googleapis.com/v4/threatMatches:find?key={api_key}"
+
+    payload = {
+        "client": {
+            "clientId": "your-app-name",
+            "clientVersion": "1.0.0"
+        },
+        "threatInfo": {
+            "threatTypes": ["MALWARE", "SOCIAL_ENGINEERING"],
+            "platformTypes": ["ANY_PLATFORM"],
+            "threatEntryTypes": ["URL"],
+            "threatEntries": [{"url": domain}]
+        }
+    }
+
+    response = requests.post(url, json=payload)
+    data = response.json()
+
+    if "matches" in data and data["matches"]:
+        return True
+    else:
+        return False
+
+def check_domain_safety_view(request):
+    domain_to_check = "example.com"
+    is_malicious = check_domain_safety(domain_to_check)
+    if is_malicious:
+        result = f"The domain {domain_to_check} is malicious."
+    else:
+        result = f"The domain {domain_to_check} is safe."
+    
+    return JsonResponse({'result': result})
+
+
 if __name__ == '__main__':
     gmail_quickstart()
-
+    api_key = config('GOOGLE_API_KEY')
+    if not api_key:
+        print("API key not provided.")
+    else:
+        domain_to_check = "example.com"
+        is_malicious = check_domain_safety(api_key, domain_to_check)
+        if is_malicious:
+            print(f"The domain {domain_to_check} is malicious.")
+        else:
+            print(f"The domain {domain_to_check} is safe.")
 
 
 def profile(request):
