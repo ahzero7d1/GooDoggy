@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, Text, Image, Pressable, StyleSheet, ScrollView} from 'react-native';
-import CarbonScreenTest from '../../CarbonScreenTest';
+// import CarbonScreenTest from '../../CarbonScreenTest';
 import CarbonScreenSvg from '../../assets/pics/carbon_screen.svg';
 import PolarbearSvg from '../../assets/pics/carbon_screen/polarbear.svg'
 
