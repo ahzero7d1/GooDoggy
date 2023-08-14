@@ -25,8 +25,24 @@ export default function CarbonScreen({navigation}) {
         style = {{alignSelf: 'center', marginTop: 40, marginBottom: 20}}
         source = {require('../../assets/pics/carbon_screen.png')}
     ></Image> */}
-        <CarbonScreenSvg style={{resizeMode: true, alignSelf: 'center', marginTop: 40, marginBottom: 20}} />
+        {/* <CarbonScreenSvg style={{resizeMode: true, alignSelf: 'center', marginTop: 40, marginBottom: 20}} /> */}
         {/* <PolarbearSvg /> */}
+        <Image
+        style = {{resizeMode: 'contain', alignSelf: 'center', width: 450, height: 450, marginTop: 40}}
+        source = {require('../../assets/pics/carbon_screen/polarbear.png')}
+        ></Image>
+                <Image
+        style = {{resizeMode: 'contain', alignSelf: 'center', width: 390, height: 350, marginTop: 20}}
+        source = {require('../../assets/pics/carbon_screen/carbon_value.png')}
+        ></Image>
+                <Image
+        style = {{resizeMode: 'contain', alignSelf: 'center', width: 390, height: 600}}
+        source = {require('../../assets/pics/carbon_screen/carbon_education.png')}
+        ></Image>
+                <Image
+        style = {{resizeMode: 'contain', alignSelf: 'center', marginBottom: 30, width: 390, height: 200}}
+        source = {require('../../assets/pics/carbon_screen/goodoggy_history.png')}
+        ></Image>
     </ScrollView>
 </View>
     );

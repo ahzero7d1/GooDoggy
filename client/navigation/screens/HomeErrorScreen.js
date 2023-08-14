@@ -2,7 +2,7 @@ import * as React from 'react';
 import {View, Text, Button, Image, Icon, Pressable, StyleSheet} from 'react-native';
 import { useFonts } from 'expo-font';
 
-export default function HomeScreen({navigation}) {
+export default function HomeErrorScreen({navigation}) {
     const [fontsLoaded] = useFonts({
         'Inter-SemiBold': require('../../assets/fonts/Inter-SemiBold.ttf'),
       });
@@ -35,8 +35,8 @@ export default function HomeScreen({navigation}) {
         >
         </Image>
 
-        <Text title="malicious_mail_counter" style={{fontSize: 30, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 80, top: 710}}>{`14 건`}</Text>
-        <Text title="subscription_mail_counter" style={{fontSize: 30, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 253, top: 710}}>{`100 건`}</Text>
+        <Text title="malicious_mail_counter" style={{fontSize: 30, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 80, top: 710}}>{`- 건`}</Text>
+        <Text title="subscription_mail_counter" style={{fontSize: 30, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 253, top: 710}}>{`- 건`}</Text>
     </View>
 
     );
