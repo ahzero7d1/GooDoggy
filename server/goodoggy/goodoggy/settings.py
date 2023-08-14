@@ -168,7 +168,7 @@ environ.Env.read_env()
 ...
 
 SECRET_KEY = env("SECRET_KEY")
-
+#GOOGLE_API_KEY = config('GOOGLE_API_KEY')
 ...
 
 DATABASES = {

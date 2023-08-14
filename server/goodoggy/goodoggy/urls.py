@@ -7,4 +7,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', views.profile, name='profile'),  # 추가된 부분
     path('gmail-quickstart/', views.gmail_quickstart, name='gmail-quickstart'),
+    path('malicious/', views.check_domain_safety_view, name='malicious-check'),
 ]
