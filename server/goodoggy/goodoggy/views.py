@@ -9,6 +9,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from django.shortcuts import render
+from .models import Email
 from django.contrib.auth.decorators import login_required
 from decouple import config
 from django.http import JsonResponse
@@ -77,6 +78,61 @@ def gmail_quickstart(request):
     return render(request, 'read.html')
     #return render(request, 'read.html', {'message': message})
 
+def get_gmail_service(credentials):
+    service = build('gmail', 'v1', credentials=credentials)
+    return service
+
+def get_user_credentials(request):
+    api_key = config('GOOGLE_API_KEY')
+    client_id = config('GOOGLE_CLIENT_ID')
+    client_secret = config('GOOGLE_CLIENT_SECRET')
+    refresh_token = config('GOOGLE_REFRESH_TOKEN')
+
+    credentials_info = {
+        "client_id": client_id,
+        "client_secret": client_secret,
+        "refresh_token": refresh_token,
+        "token_uri": "https://accounts.google.com/o/oauth2/token"
+    }
+    
+    return Credentials.from_authorized_user_info(credentials_info)
+
+
+    # api_key를 딕셔너리 형태로 변환하여 credentials 생성
+    credentials_info = {"token": api_key}
+    return Credentials.from_authorized_user_info(credentials_info)
+
+def get_user_email(service):
+    profile = service.users().getProfile(userId='me').execute()
+    return profile['emailAddress']
+
+def get_emails_by_sender(service, user_email):
+    emails_by_sender = {}
+    
+    emails = service.users().messages().list(userId='me').execute()
+    
+    for email_data in emails.get('messages', []):
+        email = service.users().messages().get(userId='me', id=email_data['id']).execute()
+        sender = ""
+        for header in email['payload']['headers']:
+            if header['name'] == 'From':
+                sender = header['value']
+                break
+        if sender not in emails_by_sender:
+            emails_by_sender[sender] = []
+        emails_by_sender[sender].append(email)
+    
+    return emails_by_sender
+
+def email_list(request):
+    user_credentials = get_user_credentials(request)  # 구글 소셜 로그인을 통한 사용자 인증
+    service = get_gmail_service(user_credentials)
+    
+    user_email = get_user_email(service)  # 사용자의 이메일 주소 가져오기
+    emails = get_emails_by_sender(service, user_email)  # 발신자별로 메일 데이터 가져오기
+    
+    context = {'user_email': user_email, 'emails': emails}
+    return render(request, 'email_list.html', context)
 
 def check_domain_safety(domain):
     api_key = config('GOOGLE_API_KEY')
@@ -115,7 +171,7 @@ def check_domain_safety_view(request):
 
 
 if __name__ == '__main__':
-    gmail_quickstart()
+    #gmail_quickstart()
     api_key = config('GOOGLE_API_KEY')
     if not api_key:
         print("API key not provided.")
