@@ -44,6 +44,8 @@ export default function MaliciousScreen({navigation}) {
     // const [allButton2, setAllButton2]=React.useState(false);
     // const [allButton3, setAllButton3]=React.useState(false);
 
+    const [isDogPressed, setIsDogPressed] = React.useState(false);
+
      const onSelct = (index) => {
         const newSelect = [...checkBox];
         newSelect[index].select = !newSelect[index].select;
@@ -127,6 +129,22 @@ export default function MaliciousScreen({navigation}) {
         style={styles.logoContainer}
         source= {require('../../assets/pics/GooDoggy_logo.png')}
         />
+    </Pressable>
+        <Pressable onPress={() => navigation.navigate('홈')} style={{position: 'absolute', resizeMode:"fill"}}>
+        <Image
+        style={{width: 75, height: 56, marginTop:50, marginLeft: 230}}
+        source= {require('../../assets/pics/malicious_screen/security_easteregg.png')}
+        />
+    </Pressable>
+    <Pressable onPress={()=>setIsDogPressed(!isDogPressed)}>
+        <View>
+            {isDogPressed?
+                <Image
+                    style={{marginLeft: 10, margin: 5}}
+                    source={require('../../assets/pics/malicious_screen/ballon.png')}
+                />
+                :<></>}
+        </View>
     </Pressable>
     <Pressable onPress={() => navigation.navigate('Account_Page')} style={({pressed}) => { return{opacity: pressed ? 0.5 : 1}}}>
         <Image
@@ -276,7 +294,7 @@ export default function MaliciousScreen({navigation}) {
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        left: 360,
+        marginLeft: 360,
         width: 30,
         marginTop: 60
     },
