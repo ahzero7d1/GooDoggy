@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {View, Text, Animated, Pressable, Image, StyleSheet, SafeAreaView, Button} from 'react-native';
+import {View, Text, Animated, Pressable, Image, StyleSheet} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useRef } from 'react';
 
 export default function SubscribeDeleteScreen({navigation}) {
     
@@ -77,7 +76,6 @@ export default function SubscribeDeleteScreen({navigation}) {
 
     const [checkBox, setCheckBox]=React.useState(arryaWithId); //모든 이메일 list
     const [animation] = React.useState(new Animated.Value(0));
-    const [email, setEmail]=React.useState([]); //발신자별 이메일 목록 배열 
     const [senderName, setSenderName]=React.useState([...new Set(checkBox.map(item=>item.sender))]) //발신자 목록 배열 
     const [allButton, setAllButton]=React.useState([...new Array(senderName.length).fill(false)]); //전체 삭제, 해제 버튼 
 
@@ -96,22 +94,6 @@ export default function SubscribeDeleteScreen({navigation}) {
         setCheckBox(newSelect);
         showDeleteBar();
     } //체크 박스 선택 
-
-    const selectAll =(sender)=>{
-        setCheckBox((prevSelect)=>
-            prevSelect.map((checkBox)=>(checkBox.sender === sender)?{...checkBox, select: true}:checkBox)
-        );
-        setAllButton(!allButton);
-        showDeleteBar();
-    } //전체 선택 
-
-    const deselectAll =(sender)=>{
-        setCheckBox((prevSelect)=>
-        prevSelect.map((checkBox)=>(checkBox.sender === sender)?{...checkBox, select:false}:checkBox)
-        );
-        setAllButton(!allButton);
-        showDeleteBar();
-    } //전체 해제 
 
     const showDeleteBar = () =>{
         Animated.timing(animation, {
@@ -132,12 +114,6 @@ export default function SubscribeDeleteScreen({navigation}) {
         setAllButton(update)
         showDeleteBar();
     },[allButton,showDeleteBar]);
-
-    // const interpolatedHeight = animation.interpolate({
-    //     inputRange: [0, 1],
-    //     outputRange: [0, 80],
-    //   });
-
     
     const handleDelete=()=>{
         setCheckBox((prevCheckBox)=> prevCheckBox.filter((checkBox)=>!checkBox.select));
@@ -165,7 +141,7 @@ export default function SubscribeDeleteScreen({navigation}) {
                 source= {require('../../assets/pics/profile_icon.png')}
                 />
             </Pressable>
-            {filterEmails.map(({sender,count,emails},index)=>(
+            {filterEmails.map(({sender,count,emails})=>(
                 <View key={sender}>
                 <View style={{flexDirection: 'row'}}>
                     <View style={{flexDirection: 'row'}}>
@@ -181,10 +157,6 @@ export default function SubscribeDeleteScreen({navigation}) {
                         source={require('../../assets/pics/subscribeDelete_screen/sub_num.png')}/>
                         <Text style={{paddingLeft:4, marginTop:12, fontSize:16, position: 'absolute', alignSelf:'center'}}>{count}</Text>
                     </View>
-                {/* <Image
-                    style={{resizeMode: 'contain', alignSelf: 'flex-end',  width: 400, height:30, marginBottom: 10}}
-                    source={require('../../assets/pics/subscribeDelete_screen/unsub.png')}
-                /> */}
                </View>
                 <View style={styles.boxContainer}>
                         <Pressable onPress={()=>toggleSelectAll(sender)}>
@@ -213,7 +185,6 @@ export default function SubscribeDeleteScreen({navigation}) {
                             </View>
                             </Pressable>
                             ))}
-                        
                     </ScrollView>
                 </View>
                 </View>

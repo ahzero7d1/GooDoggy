@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text, Pressable, Image, StyleSheet, Button, SafeAreaView} from 'react-native';
+import {View, Pressable, Image, StyleSheet} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
