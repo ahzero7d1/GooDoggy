@@ -28,46 +28,60 @@ export default function SubscribeDeleteScreen({navigation}) {
     // },[])
 
     const subList = [
-        {id:1, sender: '야놀자', context: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주...', select: false, danger: 'red'},
-        {id:2, sender: '야놀자', context: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주...', select: false, danger: 'red'},
-        {id:3, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:4, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:5, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:6, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:7, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:8, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:9, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:10, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:11, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:12, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:13, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:14, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:15, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:16, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:17, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:18, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:19, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:20, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:21, sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:22, sender: 'Ali Express', context: '최대 80% 할인!! 알리 익스프레스 썸머 세일 오늘...', select: false, danger: 'red'},
-        {id:23, sender: 'Ali Express', context: '최대 80% 할인!! 알리 익스프레스 썸머 세일 오늘...', select: false, danger: 'red'},
-        {id:24, sender: 'Ali Express', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:25, sender: 'Ali Express', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:26, sender: 'Ali Express', context: '여름 가전제품 초특가!! 선풍기, 에어컨 여름 필수...', select: false, danger: 'red'},
-        {id:27, sender: 'Ali Express', context: '여름 가전제품 초특가!! 선풍기, 에어컨 여름 필수...', select: false, danger: 'red'},
-        {id:28, sender: 'Ali Express', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:29, sender: 'Ali Express', context: '물놀이 필수품 특가 세일, 알리 익스프레스에서 만...', select: false, danger: 'red'},
-        {id:30, sender: 'Ali Express', context: '물놀이 필수품 특가 세일, 알리 익스프레스에서 만...', select: false, danger: 'red'},
-        {id:31, sender: 'Ali Express', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        {id:32, sender: 'Ali Express', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', select: false, danger: 'red'},
-        
+        {sender: '야놀자', context: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주...', danger: 'red'},
+        {sender: '야놀자', context: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주...', danger: 'red'},
+        {sender: '야놀자', context: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주...', danger: 'red'},
+        {sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: '야놀자', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: 'Ali Express', context: '최대 80% 할인!! 알리 익스프레스 썸머 세일 오늘...', danger: 'red'},
+        {sender: 'Ali Express', context: '최대 80% 할인!! 알리 익스프레스 썸머 세일 오늘...', danger: 'red'},
+        {sender: 'Ali Express', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: 'Ali Express', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: 'Ali Express', context: '여름 가전제품 초특가!! 선풍기, 에어컨 여름 필수...', danger: 'red'},
+        {sender: 'Ali Express', context: '여름 가전제품 초특가!! 선풍기, 에어컨 여름 필수...', danger: 'red'},
+        {sender: 'Ali Express', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', danger: 'red'},
+        {sender: 'Ali Express', context: '물놀이 필수품 특가 세일, 알리 익스프레스에서 만...', danger: 'red'},
+        {sender: 'Ali Express', context: '물놀이 필수품 특가 세일, 알리 익스프레스에서 만...', danger: 'red'},
+        {sender: '알라딘', context: '(광고) 김달님 에세이 <우리는 조금씩 자란...', danger: 'red'},
+        {sender: '알라딘', context: '(광고) 2023 만화 중간 결산전 + 패브릭 수...', danger: 'red'},
+        {sender: '알라딘', context: '(광고) 세상을 움직이는 건 인간이 아니라 자연...', danger: 'red'},
+        {sender: '알라딘', context: '(광고) 야만과 지상낙원이라는 편견에 갇...', danger: 'red'},
+        {sender: '알라딘', context: '(광고) 조르주 페렉 선집 <어렴풋한 부터...', danger: 'red'},
+        {sender: '알라딘', context: '중요 메일메일 제목(광고) 크리스토퍼 놀란...', danger: 'red'},
+        {sender: '알라딘', context: '중요 메일메일 제목(광고) 8월 특별 선물 ...', danger: 'red'},
+        {sender: '알라딘', context: '(광고) 알라디너TV 이달의 북튜브 챌린지 #미...', danger: 'red'},
+        {sender: 'YouTube Music', context: '음악 추천 기능이 한층 업그레이드되...', danger: 'red'},
+        {sender: 'YouTube Music', context: '아영님의 재생목록에는 어떤 콘텐츠가...', danger: 'red'},
+        {sender: 'YouTube Music', context: '아영님의 재생목록에는 어떤 콘텐츠가...', danger: 'red'},
+        {sender: 'YouTube Music', context: '좋아하는 노래를 밖에서도 자유롭게...', danger: 'red'},
+        {sender: 'YouTube Music', context: '현솔님, 이제 편리하게 음악을 즐기실 ...', danger: 'red'},
+        {sender: 'YouTube Music', context: 'YouTube Music이 알려주는 최신 인기...',danger: 'red'},
+        {sender: 'YouTube Music', context: '(광고) Music Recap: 내 음악 취향 분...', danger: 'red'},
+        {sender: 'YouTube Music', context: '1억 곡 이상의 광고 없는 노래가..', danger: 'red'},
     ]
-    const [checkBox, setCheckBox]=React.useState(subList); //모든 이메일 list
+
+    
+    const arryaWithId = subList.map((item,index)=>({
+        id: index,
+        select: false,
+        ...item
+    }))
+
+    const [checkBox, setCheckBox]=React.useState(arryaWithId); //모든 이메일 list
     const [animation] = React.useState(new Animated.Value(0));
     const [email, setEmail]=React.useState([]); //발신자별 이메일 목록 배열 
     const [senderName, setSenderName]=React.useState([...new Set(checkBox.map(item=>item.sender))]) //발신자 목록 배열 
     const [allButton, setAllButton]=React.useState([...new Array(senderName.length).fill(false)]); //전체 삭제, 해제 버튼 
 
+    
 
     const filterEmails= senderName.map(sender=> (
         {
@@ -110,10 +124,12 @@ export default function SubscribeDeleteScreen({navigation}) {
     const toggleSelectAll = React.useCallback((sender)=>{
         setCheckBox((prevSelect)=>
             prevSelect.map((checkBox)=> checkBox.sender === sender?
-                {...checkBox, select: !allButton}: checkBox
+                {...checkBox, select: !allButton[senderName.indexOf(sender)]}: checkBox
             )
         )
-        setAllButton(!allButton);
+        const update = allButton;
+        update[senderName.indexOf(sender)] = !update[senderName.indexOf(sender)];
+        setAllButton(update)
         showDeleteBar();
     },[allButton,showDeleteBar]);
 
@@ -126,8 +142,9 @@ export default function SubscribeDeleteScreen({navigation}) {
     const handleDelete=()=>{
         setCheckBox((prevCheckBox)=> prevCheckBox.filter((checkBox)=>!checkBox.select));
         setCheckBox((prevSelect)=>
-        prevSelect.map((checkBox)=>({...checkBox, select:false}))
+            prevSelect.map((checkBox,index)=>({...checkBox, select:false, id:index}))
         );
+
     } //삭제하기 
 
     const isAnyCheckboxChecked = checkBox.some((checkbox) => checkbox.select);
@@ -171,7 +188,7 @@ export default function SubscribeDeleteScreen({navigation}) {
                </View>
                 <View style={styles.boxContainer}>
                         <Pressable onPress={()=>toggleSelectAll(sender)}>
-                            {allButton?<Image
+                            {allButton[senderName.indexOf(sender)]?<Image
                                 style={{resizeMode: 'contain', alignSelf: 'flex-start', margin: 10}}
                                 source={require('../../assets/pics/subscribeDelete_screen/sub_deselectAll.png')}
                             />:<Image
@@ -226,10 +243,10 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center',
         width: 350,
-        height: 300,
+        height: 260,
         borderWidth: 2,
         borderColor: '#c6c6c6',
         borderRadius: 20,
-        marginBottom: 10
+        marginBottom: 30
     }
 })
