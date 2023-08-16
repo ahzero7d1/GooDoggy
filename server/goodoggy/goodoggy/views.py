@@ -9,13 +9,10 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from django.shortcuts import render
-from .models import Email
-from django.contrib.auth.decorators import login_required
-from decouple import config
 from django.http import JsonResponse
+#from django.contrib.auth.decorators import login_required
 from decouple import config
-import requests
-import os
+
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://mail.google.com/',
@@ -35,6 +32,7 @@ SCOPES = ['https://mail.google.com/',
           'https://www.googleapis.com/auth/gmail.modify'
           ]
 
+api_key = config('GOOGLE_API_KEY')
 
 def gmail_quickstart(request):
     """Shows basic usage of the Gmail API.
@@ -55,13 +53,13 @@ def gmail_quickstart(request):
                 'credentials.json', SCOPES, redirect_uri='http://localhost:8080/')
             creds = flow.run_local_server(port=8080)
         # Save the credentials for the next run
-        with open('token.json', 'w') as token:
+        with open('token.json', 'w', encoding='utf-8') as token:
             token.write(creds.to_json())
 
     try:
         # Call the Gmail API
         service = build('gmail', 'v1', credentials=creds)
-        results = service.users().labels().list(userId='me').execute()
+        results = service.users().labels().list(userId='me').execute()  # 여기서 'me'를 사용하여 호출
         labels = results.get('labels', [])
 
         if not labels:
@@ -76,14 +74,13 @@ def gmail_quickstart(request):
         print(f'An error occurred: {error}')
         
     return render(request, 'read.html')
-    #return render(request, 'read.html', {'message': message})
+
 
 def get_gmail_service(credentials):
     service = build('gmail', 'v1', credentials=credentials)
     return service
 
-def get_user_credentials(request):
-    api_key = config('GOOGLE_API_KEY')
+def get_user_credentials():
     client_id = config('GOOGLE_CLIENT_ID')
     client_secret = config('GOOGLE_CLIENT_SECRET')
     refresh_token = config('GOOGLE_REFRESH_TOKEN')
@@ -97,16 +94,11 @@ def get_user_credentials(request):
     
     return Credentials.from_authorized_user_info(credentials_info)
 
-
-    # api_key를 딕셔너리 형태로 변환하여 credentials 생성
-    credentials_info = {"token": api_key}
-    return Credentials.from_authorized_user_info(credentials_info)
-
 def get_user_email(service):
     profile = service.users().getProfile(userId='me').execute()
     return profile['emailAddress']
 
-def get_emails_by_sender(service, user_email):
+def get_emails_by_sender(service):
     emails_by_sender = {}
     
     emails = service.users().messages().list(userId='me').execute()
@@ -125,17 +117,16 @@ def get_emails_by_sender(service, user_email):
     return emails_by_sender
 
 def email_list(request):
-    user_credentials = get_user_credentials(request)  # 구글 소셜 로그인을 통한 사용자 인증
+    user_credentials = get_user_credentials()  # 구글 소셜 로그인을 통한 사용자 인증
     service = get_gmail_service(user_credentials)
     
     user_email = get_user_email(service)  # 사용자의 이메일 주소 가져오기
-    emails = get_emails_by_sender(service, user_email)  # 발신자별로 메일 데이터 가져오기
+    emails = get_emails_by_sender(service)  # 발신자별로 메일 데이터 가져오기
     
     context = {'user_email': user_email, 'emails': emails}
     return render(request, 'email_list.html', context)
 
-def check_domain_safety(domain):
-    api_key = config('GOOGLE_API_KEY')
+def check_domain_safety(domain, timeout=10):
     url = f"https://safebrowsing.googleapis.com/v4/threatMatches:find?key={api_key}"
 
     payload = {
@@ -151,15 +142,22 @@ def check_domain_safety(domain):
         }
     }
 
-    response = requests.post(url, json=payload)
-    data = response.json()
+    try:
+        response = requests.post(url, json=payload, timeout=timeout)
+        data = response.json()
 
-    if "matches" in data and data["matches"]:
-        return True
-    else:
+        if "matches" in data and data["matches"]:
+            return True
+        else:
+            return False
+    except requests.Timeout:
+        print("Request timed out")
+        return False
+    except requests.RequestException as e:
+        print("Request error:", e)
         return False
 
-def check_domain_safety_view(request):
+def check_domain_safety_view():
     domain_to_check = "example.com"
     is_malicious = check_domain_safety(domain_to_check)
     if is_malicious:
@@ -172,18 +170,11 @@ def check_domain_safety_view(request):
 
 if __name__ == '__main__':
     #gmail_quickstart()
-    api_key = config('GOOGLE_API_KEY')
     if not api_key:
         print("API key not provided.")
     else:
-        domain_to_check = "example.com"
-        is_malicious = check_domain_safety(api_key, domain_to_check)
-        if is_malicious:
-            print(f"The domain {domain_to_check} is malicious.")
-        else:
-            print(f"The domain {domain_to_check} is safe.")
+        check_domain_safety_view()
 
-
-def profile(request):
+def profile_view(request):
     # 프로필 페이지에 대한 처리를 여기에 작성
     return render(request, 'profile.html')
