@@ -1,16 +1,20 @@
 import * as React from 'react';
-import {View, Text, Pressable, Image, StyleSheet, Button, TouchableOpacity, Dimensions} from 'react-native';
+import {View, Text, Pressable, Image, StyleSheet, Dimensions} from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { ScrollView } from 'react-native-gesture-handler';
+import PropTypes from 'prop-types';
 
 export default function MaliciousScreen({navigation}) {
     const subList = [
-        {text: 'Payment Reversal', sender: 'Marketing9', select: false},
-        {text: 'In the absence of our Agent who is out on vacation due to COVID 19...', sender: 'marketing9', select: false},
-        {text: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', sender: '중고나라', select: false},
-        {text: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', sender: '중고나라', select: false},
-        {text: 'Payment Reversal', sender: 'marketing9', select: false},
-
+        {text: '최종 경고: 금지 된 화학 물질주의 사항', sender: '한국 환경부', select: false},
+        {text: '서아영님 안녕하세요, 경력자 최원태 이력서입니다', sender: '최원태', select: false},
+        {text: '[긴급] 개인정보 유출사건 관련 확인요청', sender: '한국인터넷진흥원', select: false},
+        {text: '계정 해지 요청', sender: 'Hiworks', select: false},
+        {text: '귀하의 계정이 해킹당했습니다', sender: 'Charles', select: false},
+        {text: '연구소 석사이상 연구원 모집', sender: '진', select: false},
+        {text: '[System Administrator] - Notice!', sender: 'korea.kr', select: false},
+        {text: '[페맥스] 수입연장 안내', sender: 'send-only-fedexcco', select: false},
+        {text: '[netflix-service]:Update details required', sender: 'service', select: false},
     ]
 
     const subList2 = [
@@ -20,25 +24,25 @@ export default function MaliciousScreen({navigation}) {
         {text: 'New Purchase Order', sender: 'Emerson', select: false},
         {text: 'Rubber Purchase Order', sender: 'Allison.Tegler', select: false},
         {text: '[김지영] 지원서', sender: '김지영', select: false},
-        {text: '[고용노동부] 임금체불관련 출석요구서', sender: '고용노동부', select: false},
-        {text: 'Busan SHIPMENT', sender: 'ship coorperation', select: false},
-        {text: 'Payment Reversal', sender: 'Ameen-isham', select: false},
-        {text: 'New Purchase Order', sender: 'Emerson', select: false},
-        {text: 'Rubber Purchase Order', sender: 'Allison.Tegler', select: false},
-        {text: '[김지영] 지원서', sender: '김지영', select: false},
+        {text: 'Purchase Order', sender: 'Eddison.Tyler', select: false},
+        {text: '[이지영] 지원서', sender: '이지영', select: false},
     ]
 
     const subList3 = [
-        {text: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주...', sender: '야놀자', select: false},
         {text: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', sender: '중고나라', select: false},
+        {text: '우편함 확인 : 최종 경고', sender:'Daum Info', select: false},
+        {text: 'Reset Your Password', sender:'eBay', select: false},
+        {text: 'DAUM: 경고 사서함이 거의 가득 찼습니다.', sender:'INFO', select: false},
+        {text: '[알림]스팸메일 대량 발송', sender:'시큐리티대응센터', select: false},
+        {text: 'Hello', sender:'Ali', select: false},
     ]
     const [checkBox, setCheckBox]=React.useState(subList);
     const [checkBox2, setCheckBox2]=React.useState(subList2);
     const [checkBox3, setCheckBox3]=React.useState(subList3);
 
     const [allButton, setAllButton]=React.useState(false);
-    const [allButton2, setAllButton2]=React.useState(false);
-    const [allButton3, setAllButton3]=React.useState(false);
+    // const [allButton2, setAllButton2]=React.useState(false);
+    // const [allButton3, setAllButton3]=React.useState(false);
 
      const onSelct = (index) => {
         const newSelect = [...checkBox];
@@ -98,7 +102,7 @@ export default function MaliciousScreen({navigation}) {
 
     }
 
-    const isAnyCheckboxChecked = checkBox.some((checkbox) => checkbox.select);
+    // const isAnyCheckboxChecked = checkBox.some((checkbox) => checkbox.select);
 
     const handleDelete=()=>{
         setCheckBox((prevCheckBox)=> prevCheckBox.filter((checkBox)=>!checkBox.select));
@@ -343,3 +347,9 @@ const styles = StyleSheet.create({
         paddingRight: 15
     }
 })
+
+MaliciousScreen.propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired,
+    }).isRequired,
+  };
