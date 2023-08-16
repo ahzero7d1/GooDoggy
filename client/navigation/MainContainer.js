@@ -12,6 +12,7 @@ import SubscriptionScreen from './screens/SubscriptionScreen'
 import CarbonScreen from './screens/CarbonScreen';
 import AccountScreen from './screens/AccountScreen';
 import SubscribeDeleteScreen from './screens/SubscribeDeleteScreen';
+import HomeErrorScreen from './screens/HomeErrorScreen';
 
 //Screen names
 const homeName = '홈';
@@ -92,6 +93,7 @@ export default function MainContainer(){
             <Stack.Navigator>
                 <Stack.Screen name="GooDoggy" component={MainScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="Account_Page" component={AccountScreen} options={{headerShown: false}}/>
+                <Stack.Screen name="Home_Error_Page" component={HomeErrorScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="Red_Delete" component={SubscribeDeleteScreen} options={{headerShown: false}}/>
             </Stack.Navigator>
         </NavigationContainer>

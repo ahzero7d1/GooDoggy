@@ -36,7 +36,7 @@ export default function HomeScreen({navigation}) {
     return(
 
     <View style={{flex: 1}}>
-        <Pressable onPress={() => navigation.navigate('Account_Page')} style={({pressed}) => { return{opacity: pressed ? 0.5 : 1}}}>
+        <Pressable onPress={() => navigation.navigate('Home_Error_Page')} style={({pressed}) => { return{opacity: pressed ? 0.5 : 1}}}>
         <Image
         style={styles.buttonContainer}
         source= {require('../../assets/pics/profile_icon.png')}
@@ -45,7 +45,7 @@ export default function HomeScreen({navigation}) {
 
         <Pressable  onPress={()=>isSelect?start():null}>
             <Image
-            style = {{resizeMode: "contain", alignSelf: 'center', marginTop: 0, width: 350, height: 400}}
+            style = {{resizeMode: "contain", alignSelf: 'center', marginTop: 30, width: 350, height: 400}}
             source = {require('../../assets/pics/main_screen/main_circle.png')}
             ></Image>
             {isSelect?<Image style={styles.dog} source={require('../../assets/pics/main_screen/dog.png')}/>:<Image style={styles.dog}source={require('../../assets/pics/main_screen/runningDog.gif')}/>}
@@ -62,8 +62,8 @@ export default function HomeScreen({navigation}) {
         </Image>
         
 
-        <Text title="malicious_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 85, top: 665}}>{`${spam}건`}</Text>
-        <Text title="subscription_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 255, top: 665}}>{`${sub}건`}</Text>
+        <Text title="malicious_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 85, top: 690}}>{`${spam}건`}</Text>
+        <Text title="subscription_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 255, top: 690}}>{`${sub}건`}</Text>
     </View>
 
     );
@@ -89,6 +89,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         alignSelf: 'center',
         justifyContent: 'center',
-        top: 150
+        top: 170
     }
 })
