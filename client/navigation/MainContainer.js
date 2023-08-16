@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { View, Text, Image } from 'react-native';
+import { Image } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
-//Icons
-import malicious_icon from '../assets/pics/malicious_icon.svg';
 
 //Screens
 import HomeScreen from './screens/HomeScreen'
@@ -29,8 +25,7 @@ const Stack = createStackNavigator();
 MainScreen = () => {
     return(
         <Tab.Navigator
-            initialRouteName="Home"
-            // screenOptions={{headerShown: false}}       
+            initialRouteName="Home"   
             tabBarOptions={{
                 activeTintColor: 'black',
                 inactiveTintColor: '#929292',

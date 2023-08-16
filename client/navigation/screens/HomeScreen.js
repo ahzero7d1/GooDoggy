@@ -1,8 +1,6 @@
 import * as React from 'react';
-import {View, Text, Button, Image, Icon, Pressable, StyleSheet} from 'react-native';
+import {View, Text, Image, Pressable, StyleSheet} from 'react-native';
 import { useFonts } from 'expo-font';
-import { Animated } from 'react-native';
-import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
 export default function HomeScreen({navigation}) {
     const [fontsLoaded] = useFonts({
@@ -22,8 +20,8 @@ export default function HomeScreen({navigation}) {
                 if(newCount>99){
                     clearInterval(timer);
                     setIsSelect(true);
-                    setSpam(14);
-                    setSub(32);
+                    setSpam(27);
+                    setSub(239);
                 }
                 return newCount;
             });
@@ -45,13 +43,6 @@ export default function HomeScreen({navigation}) {
         />
         </Pressable>
 
-        {/* <Text
-            onPress={() => alert('This is the "Home" screen.')}
-            style={{fontSize: 26, fontWeight: 'bold'}}
-        >
-            Home Screen
-        </Text> */}
-
         <Pressable  onPress={()=>isSelect?start():null}>
             <Image
             style = {{resizeMode: "contain", alignSelf: 'center', marginTop: 0, width: 350, height: 400}}
@@ -71,8 +62,8 @@ export default function HomeScreen({navigation}) {
         </Image>
         
 
-        <Text title="malicious_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 75, top: 665}}>{`${spam}건`}</Text>
-        <Text title="subscription_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 250, top: 665}}>{`${sub}건`}</Text>
+        <Text title="malicious_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 85, top: 665}}>{`${spam}건`}</Text>
+        <Text title="subscription_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 255, top: 665}}>{`${sub}건`}</Text>
     </View>
 
     );

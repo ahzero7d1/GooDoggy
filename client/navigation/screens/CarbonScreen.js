@@ -1,8 +1,6 @@
 import * as React from 'react';
-import {View, Text, Image, Pressable, StyleSheet, ScrollView} from 'react-native';
-// import CarbonScreenTest from '../../CarbonScreenTest';
-import CarbonScreenSvg from '../../assets/pics/carbon_screen.svg';
-import PolarbearSvg from '../../assets/pics/carbon_screen/polarbear.svg'
+import {View, Image, Pressable, StyleSheet, ScrollView} from 'react-native';
+import PropTypes from 'prop-types';
 
 
 export default function CarbonScreen({navigation}) {
@@ -21,12 +19,6 @@ export default function CarbonScreen({navigation}) {
         />
     </Pressable>
     <ScrollView>
-    {/* <Image
-        style = {{alignSelf: 'center', marginTop: 40, marginBottom: 20}}
-        source = {require('../../assets/pics/carbon_screen.png')}
-    ></Image> */}
-        {/* <CarbonScreenSvg style={{resizeMode: true, alignSelf: 'center', marginTop: 40, marginBottom: 20}} /> */}
-        {/* <PolarbearSvg /> */}
         <Image
         style = {{resizeMode: 'contain', alignSelf: 'center', width: 450, height: 450, marginTop: 40}}
         source = {require('../../assets/pics/carbon_screen/polarbear.png')}
@@ -60,3 +52,9 @@ const styles = StyleSheet.create({
         position: 'absolute'
     }
 })
+
+CarbonScreen.propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired,
+    }).isRequired,
+  };

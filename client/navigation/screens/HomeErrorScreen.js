@@ -1,11 +1,7 @@
 import * as React from 'react';
-import {View, Text, Button, Image, Icon, Pressable, StyleSheet} from 'react-native';
-import { useFonts } from 'expo-font';
+import {View, Text, Image, Pressable, StyleSheet} from 'react-native';
 
 export default function HomeErrorScreen({navigation}) {
-    const [fontsLoaded] = useFonts({
-        'Inter-SemiBold': require('../../assets/fonts/Inter-SemiBold.ttf'),
-      });
     return(
 
     <View style={{flex: 1}}>
@@ -15,14 +11,6 @@ export default function HomeErrorScreen({navigation}) {
         source= {require('../../assets/pics/profile_icon.png')}
         />
         </Pressable>
-
-        {/* <Text
-            onPress={() => alert('This is the "Home" screen.')}
-            style={{fontSize: 26, fontWeight: 'bold'}}
-        >
-            Home Screen
-        </Text> */}
-
 
         <Image
         style = {{resizeMode: "contain", alignSelf: 'center', marginTop: 10, width: 350, height: 498}}
@@ -49,3 +37,9 @@ const styles = StyleSheet.create({
         width: 30
     }
 })
+
+HomeErrorScreen.propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired,
+    }).isRequired,
+  };
