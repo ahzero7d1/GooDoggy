@@ -43,6 +43,13 @@ export default function HomeScreen({navigation}) {
         />
         </Pressable>
 
+        <Pressable onPress={() => navigation.navigate('Survey_Page')} style={({pressed}) => { return{opacity: pressed ? 0.5 : 1}}}>
+        <Image
+        style={styles.starButtonContainer}
+        source= {require('../../assets/pics/main_screen/star.png')}
+        />
+        </Pressable>
+
         <Pressable  onPress={()=>isSelect?start():null}>
             <Image
             style = {{resizeMode: "contain", alignSelf: 'center', marginTop: 30, width: 350, height: 400}}
@@ -90,5 +97,13 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
         top: 170
+    },
+    starButtonContainer: {
+        top: 5,
+        left: 348,
+        height: 55,
+        width: 55,
+        position: 'absolute',
+        resizeMode: 'contain'
     }
 })
