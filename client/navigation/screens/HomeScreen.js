@@ -20,7 +20,7 @@ export default function HomeScreen({navigation}) {
                 if(newCount>99){
                     clearInterval(timer);
                     setIsSelect(true);
-                    setSpam(27);
+                    setSpam(23);
                     setSub(239);
                 }
                 return newCount;

@@ -2,6 +2,7 @@ import * as React from 'react';
 import {View, Text, Pressable, Image, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native-gesture-handler';
+import { stateContext } from '../../App';
 
 export default function BulletinBoardScreen({navigation}) {
 
@@ -26,33 +27,15 @@ export default function BulletinBoardScreen({navigation}) {
     // React.useEffect(()=>{
     //     getData();
     // },[])
-   
+
+    const [time, setTime]=React.useState(new Date());
+    const dataList = React.useContext(stateContext);
     const [data, setData]=React.useState([]);
 
-    const onCreate=(writer,title,context)=>{
-        const created_date=new Date().getTime();
-        const newItem={
-          writer,
-          title,
-          context,
-          created_date,
-          id:dataID.current
-        }
-        dataID.current+=1;
-        setData([newItem,...data]);
-      };
 
-    const data = [
-        {writer: '야놀자', time: '19:35',title: 'Hi', context: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주.............................', },
-        {writer: '야놀자', time: '19:35',title: 'Hi', context: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주.............................', },
-        {writer: '야놀자', time: '19:35',title: 'Hi', context: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주.............................', },
-        {writer: '야놀자', time: '19:35',title: 'Hi', context: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주.............................', },
-        {writer: '야놀자', time: '19:35',title: 'Hi', context: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주.............................', },
-        {writer: '야놀자', time: '19:35',title: 'Hi', context: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', },
-        {writer: '야놀자', time: '19:35',title: 'Hi', context: '여름 휴가 초특가!! 국내여행 강원도, 부산, 제주...', },
-        {writer: '야놀자', time: '19:35',title: 'Hi', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', },
-        {writer: '야놀자', time: '19:35',title: 'Hi', context: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', },
-    ]
+    React.useEffect(()=>{
+        setData(dataList);
+    })   
 
     const cutContext = (context) =>{
         let cut = "";
@@ -63,10 +46,9 @@ export default function BulletinBoardScreen({navigation}) {
             cut = context+ '...';
         }
         return cut;
-
     }
-
     return(
+
 <View style={{flex:1}}>
     <Pressable onPress={() => navigation.navigate('홈')} style={({pressed}) => { return{opacity: pressed ? 0.5 : 1}}}>
         <Image
