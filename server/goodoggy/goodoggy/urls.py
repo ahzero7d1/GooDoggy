@@ -10,4 +10,5 @@ urlpatterns = [
     path('malicious/', views.check_domain_safety_view, name='malicious-check'),
     #path('spam/', views.email_list, name='email_list'),
     path('auth_callback/', views.email_list, name='email_list'),
+    path('feedback/', views.feedback, name='feedback')
 ]
