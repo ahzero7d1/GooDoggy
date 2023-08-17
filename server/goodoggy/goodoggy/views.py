@@ -82,25 +82,6 @@ def get_gmail_service(credentials):
     service = build('gmail', 'v1', credentials=credentials)
     return service
 
-def feedback(request):
-    # POST라면 입력한 내용을 form을 이용하여 데이터베이스에 저장
-    if request.method == 'POST':
-        form = forms.FdbForm(request.POST)
-
-        # 유효성 검사
-        if form.is_valid():
-            fdb = models.Feedback()
-            fdb.good = form.cleaned_data['good']
-            fdb.bad = form.cleaned_data['bad']
-            fdb.save()
-            return redirect('profile')
-
-    # GET이라면 입력값을 받을 수 있는 html을 가져다 줘야함
-    else:
-        form = forms.FdbForm()
-
-    return render(request, 'feedback.html', {'form': form})
-
 def get_user_credentials():
     client_id = config('GOOGLE_CLIENT_ID')
     client_secret = config('GOOGLE_CLIENT_SECRET')
@@ -199,3 +180,44 @@ if __name__ == '__main__':
 def profile_view(request):
     # 프로필 페이지에 대한 처리를 여기에 작성
     return render(request, 'profile.html')
+
+
+def feedback(request):
+    # POST라면 입력한 내용을 form을 이용하여 데이터베이스에 저장
+    if request.method == 'POST':
+        form = forms.FdbForm(request.POST)
+
+        # 유효성 검사
+        if form.is_valid():
+            fdb = models.Feedback()
+            fdb.good = form.cleaned_data['good']
+            fdb.bad = form.cleaned_data['bad']
+            fdb.save()
+            return redirect('profile')
+
+    # GET이라면 입력값을 받을 수 있는 html을 가져다 줘야함
+    else:
+        form = forms.FdbForm()
+
+    return render(request, 'feedback.html', {'form': form})
+
+def board(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        writer = request.POST['writer']
+
+        boards = models.Board(
+            title=title,
+            content=content,
+            writer=writer,
+        )
+        boards.save()
+        return redirect('board')
+    else:
+        boardForm = forms.BoardForm
+        context = {
+            'boardForm': boardForm,
+            'board': board,
+        }
+        return render(request, 'board.html', context)
