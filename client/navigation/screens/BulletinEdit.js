@@ -1,32 +1,12 @@
 import * as React from 'react';
-import {View, Text, Pressable, Image, StyleSheet} from 'react-native';
+import {View, Text, Pressable, Image, StyleSheet, TextInput} from 'react-native';
 import PropTypes from 'prop-types';
+import { useContext, useEffect, useParams } from 'react/cjs/react.production.min';
+import { stateContext, dispatchContext } from '../../App';
 
 export default function BullentinEdit({navigation, id, writer, time, context}) {
-     //API 연결 
-    // const dataID = useRef(0);
-    // const [data, setData] = React.useState([]);
-
-    // const getData=async()=>{
-    //     const res = await fetch(/**/).then((res)=>res.json());
-    //     const initData = res.slice(0,20).map((it)=>{
-    //         return{
-    //             id: dataID.current++,
-    //             writer: it.writer,
-    //             title: it.title,
-    //             context: it.context,
-    //             select: false,
-    //         };
-    //     });
-    //     setData(initData);
-    // }
-
-    // React.useEffect(()=>{
-    //     getData();
-    // },[])
     const [select, setSelect]= React.useState(false);
     
-
     return(
         <View style={{flex:1}}>
                 <Pressable onPress={() => navigation.navigate('홈')} style={({pressed}) => { return{opacity: pressed ? 0.5 : 1}}}>
@@ -42,17 +22,30 @@ export default function BullentinEdit({navigation, id, writer, time, context}) {
                     />
                 </Pressable>
 
+                {/* <View style={styles.boxContainer}>
+                <TextInput ref={titleInput} value={title} style={styles.title} onPress={(e)=>setTitle(e.target.value)}
+                    placeholder='제목 (30자 이내)'></TextInput>
+                <View style={styles.line}/>
+                <TextInput ref={contextInput} value={context} style={styles.context} onPress={(e)=>setContext(e.target.value)}
+                    placeholder='내용을 입력하세요.. (100자 이내)'></TextInput>
+                </View> */}
+
+                
+
             <View style={styles.boxContainer}>
-                <Text name="title"></Text>
+                <TextInput name="title"></TextInput>
                 <View style={styles.line}/>
                 <Text></Text>
                 <Text name="context"></Text>
-                {select?<Image onPress={()=>{}} source={require('../../assets/pics/bulletinEdit_screen/doneButton.png')}/>
-                :<Image onPress={()=>{}} style={styles.editButton} source={require('../../assets/pics/bulletinEdit_screen/editButton.png')}></Image> 
-}
-                <Image onPress={()=>{}} style={styles.deleteButton} source={require('../../assets/pics/bulletinEdit_screen/deleteButton.png')}></Image> 
+                <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-end', paddingRight: 15, paddingTop: 380}}>
+                    {select?<Image onPress={()=>{}} source={require('../../assets/pics/bulletinEdit_screen/doneButton.png')}/>
+                    :<Image onPress={()=>{}} style={styles.editButton} source={require('../../assets/pics/bulletinEdit_screen/editButton.png')}></Image> 
+                    }<Image onPress={()=>{}} style={styles.deleteButton} source={require('../../assets/pics/bulletinEdit_screen/deleteButton.png')}></Image> 
+                </View>
             </View>
-            <Image onPress={()=>{}} style={styles.goBackButton} source={require('../../assets/pics/bulletinEdit_screen/goBackButton.png')}></Image> 
+            <Pressable onPress={()=> navigation.navigate('라운지')}>
+                <Image style={styles.goBackButton} source={require('../../assets/pics/bulletinEdit_screen/goBackButton.png')}></Image> 
+            </Pressable>
 
         </View>
     );
@@ -64,26 +57,18 @@ const styles = StyleSheet.create({
         marginTop: 60,
         left: 360,
         marginBottom: 10,
-        width: 30
+        width: 30,
+        flexDirection: 'row'
     },
     logoContainer: {
         left: 25,
         marginTop: 60,
         position: 'absolute'
     },
-    boxContainer: {
-        resizeMode: 'contain',
-        alignSelf: 'center',
-        width: 350,
-        height: 260,
-        borderWidth: 2,
-        borderColor: '#c6c6c6',
-        borderRadius: 20,
-        marginBottom: 30
-    },
     editButton:{
         width: 120,
         height: 40,
+        marginRight: 5
     },
     deleteButton:{
         width: 120,
@@ -98,12 +83,20 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center',
         width: 350,
-        height: 520,
+        height: 550,
         borderWidth: 2,
         borderColor: '#c6c6c6',
         borderRadius: 20,
-        marginTop: 30,
+        marginTop: 50,
         marginBottom: 30,
-    }
+    },
+    line:{
+        borderColor: 'black',
+        borderWidth: 0.7,
+        width: 310,
+        alignSelf: 'center',
+        marginTop: 60,
+        marginBottom: 5,
+    },
 })
 
