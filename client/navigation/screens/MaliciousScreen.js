@@ -5,40 +5,97 @@ import { ScrollView } from 'react-native-gesture-handler';
 import PropTypes from 'prop-types';
 
 export default function MaliciousScreen({navigation}) {
-    const subList = [
-        {text: '최종 경고: 금지 된 화학 물질주의 사항', sender: '한국 환경부', select: false},
-        {text: '서아영님 안녕하세요, 경력자 최원태 이력서입니다', sender: '최원태', select: false},
-        {text: '[긴급] 개인정보 유출사건 관련 확인요청', sender: '한국인터넷진흥원', select: false},
-        {text: '계정 해지 요청', sender: 'Hiworks', select: false},
-        {text: '귀하의 계정이 해킹당했습니다', sender: 'Charles', select: false},
-        {text: '연구소 석사이상 연구원 모집', sender: '진', select: false},
-        {text: '[System Administrator] - Notice!', sender: 'korea.kr', select: false},
-        {text: '[페맥스] 수입연장 안내', sender: 'send-only-fedexcco', select: false},
-        {text: '[netflix-service]:Update details required', sender: 'service', select: false},
-    ]
 
-    const subList2 = [
-        {text: '[고용노동부] 임금체불관련 출석요구서', sender: '고용노동부', select: false},
-        {text: 'Busan SHIPMENT', sender: 'ship coorperation', select: false},
-        {text: 'Payment Reversal', sender: 'Ameen-isham', select: false},
-        {text: 'New Purchase Order', sender: 'Emerson', select: false},
-        {text: 'Rubber Purchase Order', sender: 'Allison.Tegler', select: false},
-        {text: '[김지영] 지원서', sender: '김지영', select: false},
-        {text: 'Purchase Order', sender: 'Eddison.Tyler', select: false},
-        {text: '[이지영] 지원서', sender: '이지영', select: false},
-    ]
+    const dataID1 = useRef(0);
+    const [data1, setData1] = React.useState([]);
 
-    const subList3 = [
-        {text: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', sender: '중고나라', select: false},
-        {text: '우편함 확인 : 최종 경고', sender:'Daum Info', select: false},
-        {text: 'Reset Your Password', sender:'eBay', select: false},
-        {text: 'DAUM: 경고 사서함이 거의 가득 찼습니다.', sender:'INFO', select: false},
-        {text: '[알림]스팸메일 대량 발송', sender:'시큐리티대응센터', select: false},
-        {text: 'Hello', sender:'Ali', select: false},
-    ]
-    const [checkBox, setCheckBox]=React.useState(subList);
-    const [checkBox2, setCheckBox2]=React.useState(subList2);
-    const [checkBox3, setCheckBox3]=React.useState(subList3);
+    const getData1=async()=>{
+        const res = await fetch('https://mocki.io/v1/e94e8bd5-3f35-41e4-b684-773fca6b4825').then((res)=>res.json());
+        const initData = res.slice(0,20).map((it)=>{
+            return{
+                id: dataID1.current++,
+                sender: it.sender,
+                text: it.text,
+                select: false,
+            };
+        });
+        setData(initData);
+    }
+
+    const dataID2 = useRef(0);
+    const [data2, setData2] = React.useState([]);
+
+    const getData2=async()=>{
+        const res = await fetch('https://mocki.io/v1/e94e8bd5-3f35-41e4-b684-773fca6b4825').then((res)=>res.json());
+        const initData = res.slice(0,20).map((it)=>{
+            return{
+                id: dataID2.current++,
+                sender: it.sender,
+                text: it.text,
+                select: false,
+            };
+        });
+        setData(initData);
+    }
+
+    const getData3=async()=>{
+        const res = await fetch('https://mocki.io/v1/e94e8bd5-3f35-41e4-b684-773fca6b4825').then((res)=>res.json());
+        const initData = res.slice(0,20).map((it)=>{
+            return{
+                id: dataID3.current++,
+                sender: it.sender,
+                text: it.text,
+                select: false,
+            };
+        });
+        setData(initData);
+    }
+
+    React.useEffect(()=>{
+        getData1();
+        getData2();
+        getData3();
+    },[])
+
+    const dataID3 = useRef(0);
+    const [data3, setData3] = React.useState([]);
+
+    
+
+    // const subList = [
+    //     {text: '최종 경고: 금지 된 화학 물질주의 사항', sender: '한국 환경부', select: false},
+    //     {text: '서아영님 안녕하세요, 경력자 최원태 이력서입니다', sender: '최원태', select: false},
+    //     {text: '[긴급] 개인정보 유출사건 관련 확인요청', sender: '한국인터넷진흥원', select: false},
+    //     {text: '계정 해지 요청', sender: 'Hiworks', select: false},
+    //     {text: '귀하의 계정이 해킹당했습니다', sender: 'Charles', select: false},
+    //     {text: '연구소 석사이상 연구원 모집', sender: '진', select: false},
+    //     {text: '[System Administrator] - Notice!', sender: 'korea.kr', select: false},
+    //     {text: '[페맥스] 수입연장 안내', sender: 'send-only-fedexcco', select: false},
+    //     {text: '[netflix-service]:Update details required', sender: 'service', select: false},
+    // ]
+
+    // const subList2 = [
+    //     {text: '[고용노동부] 임금체불관련 출석요구서', sender: '고용노동부', select: false},
+    //     {text: 'Busan SHIPMENT', sender: 'ship coorperation', select: false},
+    //     {text: 'Payment Reversal', sender: 'Ameen-isham', select: false},
+    //     {text: 'New Purchase Order', sender: 'Emerson', select: false},
+    //     {text: 'Rubber Purchase Order', sender: 'Allison.Tegler', select: false},
+    //     {text: '[김지영] 지원서', sender: '김지영', select: false},
+    //     {text: 'Purchase Order', sender: 'Eddison.Tyler', select: false},
+    //     {text: '[이지영] 지원서', sender: '이지영', select: false},
+    // ]
+
+    // const subList3 = [
+    //     {text: '회원님의 포인트가 소멸될 예정입니다. 다음 링크...', sender: '중고나라', select: false},
+    //     {text: '우편함 확인 : 최종 경고', sender:'Daum Info', select: false},
+    //     {text: 'Reset Your Password', sender:'eBay', select: false},
+    //     {text: 'DAUM: 경고 사서함이 거의 가득 찼습니다.', sender:'INFO', select: false},
+    //     {text: '[알림]스팸메일 대량 발송', sender:'시큐리티대응센터', select: false},
+    //     {text: 'Hello', sender:'Ali', select: false},
+    // ]
+    const [checkBox, setCheckBox]=React.useState(data1);
+    const [checkBox2, setCheckBox2]=React.useState(data2);
+    const [checkBox3, setCheckBox3]=React.useState(data3);
 
     const [allButton, setAllButton]=React.useState(false);
     // const [allButton2, setAllButton2]=React.useState(false);
