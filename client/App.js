@@ -8,7 +8,7 @@ const reducer = (state, action)=>{
       return action.data;
     }
     case "CREATE":{
-      newstate = [action.data, ...state];
+      newState = [action.data, ...state];
       break;
     }
     case "REMOVE":{
@@ -46,8 +46,8 @@ function App() {
   const dataId = React.useRef(0);
 
   //CREATE
-  const onCreate=(writer,title,context)=>{
-    const time = new Date().getTime();
+  const onCreate=(writer, title,context,time)=>{
+    // const date = new Date().getTime();
     dispatch(
       {
         type: "CREATE",
@@ -55,13 +55,13 @@ function App() {
           writer,
           title,
           context,
-          id:dataID.current,
+          id:dataId.current,
           time
         }
       }
     )
-    dataID.current+=1;
-    setData([newItem,...data]);
+    dataId.current+=1;
+    // dispatch([dataId,...data]);
   };
 
   const onRemove=(targetId)=>{

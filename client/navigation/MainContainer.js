@@ -106,6 +106,7 @@ export default function MainContainer(){
                 <Stack.Screen name="Survey_Page" component={ServiceSurveyScreen} options={{headerShown: false}} />
                 <Stack.Screen name="BulletinEdit" component={BulletinEdit} options={{headerShown: false}}/>
                 <Stack.Screen name="BulletinWrite" component={BulletinWriteScreen} options={{headerShown: false}}/>
+                <Stack.Screen name="BulletinBoard" component={BulletinBoardScreen} options={{headerShown: false}}/>
             </Stack.Navigator>
         </NavigationContainer>
     )

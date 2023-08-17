@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {View, Text, Pressable, Image, StyleSheet} from 'react-native';
+import {View, Text, Pressable, Image, StyleSheet, KeyboardAvoidingView} from 'react-native';
 import PropTypes from 'prop-types';
 import { TextInput } from 'react-native-gesture-handler';
+import { dispatchContext } from '../../App';
 // import { useNavigation } from '@react-navigation/native';
 
-export default function BulletinWriteScreen({navigation, onCreate}) {
+export default function BulletinWriteScreen({navigation}) {
      //API 연결 
     // const dataID = useRef(0);
     // const [data, setData] = React.useState([]);
@@ -31,17 +32,17 @@ export default function BulletinWriteScreen({navigation, onCreate}) {
 
     const titleInput=React.useRef();
     const contextInput=React.useRef();
-    
+
     const [title, setTitle]=React.useState("");
     const [context, setContext] = React.useState("");
-    const [date, setDate]=React.useState(new Date());
+    const [time, setTime]=React.useState(new Date().getTime());
  
-    const [state, setState]=React.useState({
-        writer:"",
-        title:"",
-        context:"",
-        date: ""
-    })
+    // const [state, setState]=React.useState({
+    //     writer:"",
+    //     title:"",
+    //     context:"",
+    //     date: ""
+    // })
 
     const writer = "장하은";
 
@@ -52,21 +53,27 @@ export default function BulletinWriteScreen({navigation, onCreate}) {
         });
     }
 
+    const {onCreate} = React.useContext(dispatchContext);
+
     const handleSubmit=()=>{
-        if(state.title.length<1 || state.title.length>30){
+        if(title.length<1||title.length>30){
             titleInput.current.focus();
             return;
         }
-        if(state.context.length<5||state.context.length>100){
+        if(context.length<5){
             contextInput.current.focus();
             return;
         }
-        onCreate(writer,state.title, state.context)
-        setState({
-            writer:"",
-            title:"",
-            context:"",
-        })
+        
+        onCreate(writer,title, context, time);
+        navigation.navigate('라운지',{replace: true});
+        setContext("");
+        setTitle("");
+        // setState({
+        //     writer:"",
+        //     title:"",
+        //     context:"",
+        // })
     }
 
     return(
@@ -83,12 +90,12 @@ export default function BulletinWriteScreen({navigation, onCreate}) {
                     source= {require('../../assets/pics/profile_icon.png')}
                     />
                 </Pressable>
-
+            <KeyboardAvoidingView>
             <View style={styles.boxContainer}>
-                <TextInput ref={titleInput} value={title} style={styles.title} onPress={(e)=>setTitle(e.target.value)}
+                <TextInput maxLength={30} multiline={true} ref={titleInput} style={styles.title} onChangeText={(text)=>setTitle(text)}
                     placeholder='제목 (30자 이내)'></TextInput>
                 <View style={styles.line}/>
-                <TextInput ref={contextInput} value={context} style={styles.context} onPress={(e)=>setContext(e.target.value)}
+                <TextInput maxLength={100} multiline={true} ref={contextInput} style={styles.context} onChangeText={(text)=>setContext(text)}
                     placeholder='내용을 입력하세요.. (100자 이내)'></TextInput>
                 <Pressable onPress={()=>handleSubmit()}>
                     <Image style={styles.doneButton} source={require('../../assets/pics/bulletinWrite_screen/doneButton.png')}></Image> 
@@ -97,6 +104,7 @@ export default function BulletinWriteScreen({navigation, onCreate}) {
             <Pressable onPress={()=>navigation.goBack()}>
                 <Image style={styles.goBackButton} source={require('../../assets/pics/bulletinWrite_screen/goBackButton.png')}></Image> 
             </Pressable>
+            </KeyboardAvoidingView>
         </View>
     );
 }
@@ -159,16 +167,18 @@ const styles = StyleSheet.create({
     title:{
         fontWeight: 'bold',
         fontSize: 18,
-        color: '#929292',
+        color: 'black',
         marginTop: 30,
         marginLeft: 30,
+        flexShrink: 1,
+        right: 10,
     },
     context: {
         fontSize: 14,
         marginTop: 20,
         marginLeft: 30,
-        color: '#929292',
-
+        color: 'black',
+        right: 10,
     },
 })
 

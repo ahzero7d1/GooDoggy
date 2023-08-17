@@ -28,9 +28,8 @@ export default function BulletinBoardScreen({navigation}) {
     //     getData();
     // },[])
 
-    const [time, setTime]=React.useState(new Date());
     const dataList = React.useContext(stateContext);
-    const [data, setData]=React.useState([]);
+    const [time, setTime]=React.useState([]);
 
 
     React.useEffect(()=>{
