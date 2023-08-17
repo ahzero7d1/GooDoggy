@@ -8,7 +8,8 @@ export default function BulletinBoardScreen({navigation}) {
 
     //API 연결 
     // const dataID = useRef(0);
-    // const [data, setData] = React.useState([]);
+    
+    const [data, setData] = React.useState([]);
 
     // const getData=async()=>{
     //     const res = await fetch(/**/).then((res)=>res.json());

@@ -146,12 +146,13 @@ export default function MaliciousScreen({navigation}) {
                 :<></>}
         </View>
     </Pressable>
-    <Pressable onPress={() => navigation.navigate('Account_Page')} style={({pressed}) => { return{opacity: pressed ? 0.5 : 1}}}>
-        <Image
-        style={styles.buttonContainer}
-        source= {require('../../assets/pics/profile_icon.png')}
-        />
-    </Pressable>
+
+        <Pressable onPress={() => navigation.navigate('Account_Page')} style={({pressed}) => { return{opacity: pressed ? 0.5 : 1}}}>
+            <Image
+                style={styles.buttonContainer}
+                source= {require('../../assets/pics/profile_icon.png')}
+            />
+        </Pressable>
     </View>
 
     <Text style={{fontSize: 20, alignSelf: 'center', marginTop: 50, fontWeight: 'bold'}}>

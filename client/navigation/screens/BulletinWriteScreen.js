@@ -6,36 +6,17 @@ import { dispatchContext } from '../../App';
 // import { useNavigation } from '@react-navigation/native';
 
 export default function BulletinWriteScreen({navigation}) {
-     //API 연결 
-    // const dataID = useRef(0);
-    // const [data, setData] = React.useState([]);
-
-    // const getData=async()=>{
-    //     const res = await fetch(/**/).then((res)=>res.json());
-    //     const initData = res.slice(0,20).map((it)=>{
-    //         return{
-    //             id: dataID.current++,
-    //             writer: it.writer,
-    //         };
-    //     });
-    //     setState({
-    //      ...state,
-    //      writer: initData.writer});
-    //     }
-
-    // React.useEffect(()=>{
-    //     getData();
-    // },[])
-
-    // const [title, setTitle]=React.useState("");
-    // const [context, setContext]=React.useState("");
+    const getStringDate = (date) => {
+        return date.toISOString().slice(0, 10);
+    }
 
     const titleInput=React.useRef();
     const contextInput=React.useRef();
 
     const [title, setTitle]=React.useState("");
     const [context, setContext] = React.useState("");
-    const [time, setTime]=React.useState(new Date().getTime());
+    // const [time, setTime]=React.useState(new Date().getTime());
+    const [time, setTime]=React.useState(getStringDate(new Date()));
  
     // const [state, setState]=React.useState({
     //     writer:"",
