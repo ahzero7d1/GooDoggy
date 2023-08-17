@@ -286,7 +286,7 @@ export default function MaliciousScreen({navigation}) {
     </ScrollView>
     <View style={{flexDirection: 'row', resizeMode:"contain", alignSelf: 'center'}}>
          <Pressable onPress={handleDelete}><Image style={{marginTop: 10, marginRight:10, borderRadius: 8, width: 160, height: 80, resizeMode:"contain"}} source={require('../../assets/pics/malicious_screen/spam.png')}/></Pressable>
-         <Pressable onPress={handleDelete}><Image style={{marginTop: 10, borderRadius: 8, marginLet:10, width: 160, height: 80, resizeMode:"contain"}} source={require('../../assets/pics/malicious_screen/delete.png')}/></Pressable>
+         <Pressable onPress={handleDelete}><Image style={{marginTop: 10, borderRadius: 8, marginLeft:10, width: 160, height: 80, resizeMode:"contain"}} source={require('../../assets/pics/malicious_screen/delete.png')}/></Pressable>
     </View>
 </View>
     );

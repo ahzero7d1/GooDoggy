@@ -50,11 +50,12 @@ export default function HomeScreen({navigation}) {
         />
         </Pressable>
 
-        <Pressable  onPress={()=>isSelect?start():null}>
+        <Pressable style={{width: 250, height:400, alignSelf:'center'}} onPress={()=>isSelect?start():null}>
             <Image
             style = {{resizeMode: "contain", alignSelf: 'center', marginTop: 30, width: 350, height: 400}}
             source = {require('../../assets/pics/main_screen/main_circle.png')}
-            ></Image>
+            >
+            </Image>
             {isSelect?<Image style={styles.dog} source={require('../../assets/pics/main_screen/dog.png')}/>:<Image style={styles.dog}source={require('../../assets/pics/main_screen/runningDog.gif')}/>}
             
         </Pressable>
@@ -69,8 +70,8 @@ export default function HomeScreen({navigation}) {
         </Image>
         
 
-        <Text title="malicious_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 85, top: 690}}>{`${spam}건`}</Text>
-        <Text title="subscription_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 255, top: 690}}>{`${sub}건`}</Text>
+        <Text title="malicious_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 85, top: 695}}>{`${spam}건`}</Text>
+        <Text title="subscription_mail_counter" style={{fontSize: 29, fontFamily: 'Inter-SemiBold', position: 'absolute', left: 255, top: 695}}>{`${sub}건`}</Text>
     </View>
 
     );
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: '#21802A',
         fontWeight: 'bold',
-        marginTop: 30,
+        marginTop: 60,
         height: 46,
     },
     dog: {
