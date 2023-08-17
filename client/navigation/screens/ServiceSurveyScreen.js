@@ -2,6 +2,7 @@ import * as React from 'react';
 import {View, Pressable, Image, Text, StyleSheet, TextInput} from 'react-native';
 import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native-gesture-handler';
+import { KeyboardAvoidingView } from 'react-native';
 
 
 export default function ServiceSurveyScreen({navigation}) {
@@ -36,6 +37,9 @@ export default function ServiceSurveyScreen({navigation}) {
 
     return(
 <View style={{flex:1}}>
+<KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+>
     <Pressable onPress={() => navigation.navigate('홈')} style={({pressed}) => { return{opacity: pressed ? 0.5 : 1}}}>
         <Image
         style={styles.logoContainer}
@@ -117,6 +121,8 @@ export default function ServiceSurveyScreen({navigation}) {
             source={require('../../assets/pics/service_survey_screen/submit_button.png')}></Image>
         </Pressable>
         </ScrollView>
+        </KeyboardAvoidingView>
+
     </View>
 
     );
