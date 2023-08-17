@@ -3,6 +3,7 @@ import {View, Text, Pressable, Image, StyleSheet, Dimensions} from 'react-native
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { ScrollView } from 'react-native-gesture-handler';
 import PropTypes from 'prop-types';
+import { useRef } from 'react/cjs/react.production.min';
 
 export default function MaliciousScreen({navigation}) {
 
