@@ -103,23 +103,12 @@ const styles = StyleSheet.create({
         marginTop: 60,
         position: 'absolute'
     },
-    boxContainer: {
-        flexDirection: 'column',
-        resizeMode: 'contain',
-        alignSelf: 'center',
-        width: 350,
-        height: 260,
-        borderWidth: 2,
-        borderColor: '#c6c6c6',
-        borderRadius: 20,
-        marginBottom: 30
-    },
     doneButton:{
         alignSelf: 'flex-end',
         width: 120,
         height: 40,
         marginRight: 20,
-        // top: 200,
+        top: 65,
     },
     goBackButton:{
         width: 120,
@@ -130,12 +119,12 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center',
         width: 350,
-        height: 520,
+        height: 350,
         borderWidth: 2,
         borderColor: '#c6c6c6',
         borderRadius: 20,
-        marginTop: 30,
-        marginBottom: 30,
+        marginBottom: 20,
+        marginTop: 10,
     },
     line:{
         borderColor: 'black',
@@ -153,13 +142,16 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         flexShrink: 1,
         right: 10,
+        width: 300,
     },
     context: {
-        fontSize: 14,
+        fontSize: 16,
         marginTop: 20,
         marginLeft: 30,
         color: 'black',
         right: 10,
+        height: 100,
+        width: 310,
     },
 })
 
