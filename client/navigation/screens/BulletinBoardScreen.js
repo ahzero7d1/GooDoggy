@@ -30,7 +30,7 @@ export default function BulletinBoardScreen({navigation}) {
     // },[])
 
     const dataList = React.useContext(stateContext);
-    const [time, setTime]=React.useState([]);
+    // const [time, setTime]=React.useState([]);
 
 
     React.useEffect(()=>{
@@ -64,10 +64,10 @@ export default function BulletinBoardScreen({navigation}) {
     </Pressable>
     
     <Image style={styles.bullTitle} source={require('../../assets/pics/bulletinBoard_screen/bulletinTitle.png')}/>
-    <ScrollView style={styles.ScrollView}>
+    <ScrollView style={{}}>
     <View style={styles.line}/>
-    {data.map(({writer,time,title, context})=>(
-        <Pressable onPress={()=>navigation.navigate('BulletinEdit')}>
+    {data.map(({id,writer,time,title,context})=>(
+        <Pressable onPress={()=>navigation.navigate('BulletinEdit',{writer:writer,time:time, title:title,context:context })}>
         <View style={{flexDirection: "row"}}>
             <View style={{flex:1, flexDirection: "column"}}>
                 <Text style={styles.title}>{title}</Text>
@@ -123,7 +123,8 @@ const styles = StyleSheet.create({
     writer: {
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        marginTop: 10,
+        marginTop: 13,
+        marginRight: 20,
         fontSize: 14,
     },
     writeButton: {

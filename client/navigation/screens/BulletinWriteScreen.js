@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text, Pressable, Image, StyleSheet, KeyboardAvoidingView} from 'react-native';
+import {View, Pressable, Image, StyleSheet, KeyboardAvoidingView} from 'react-native';
 import PropTypes from 'prop-types';
 import { TextInput } from 'react-native-gesture-handler';
 import { dispatchContext } from '../../App';
@@ -27,12 +27,12 @@ export default function BulletinWriteScreen({navigation}) {
 
     const writer = "장하은";
 
-    const handleChangeState=(e)=>{
-        setState({
-            ...state,
-            [e.target.name]:e.target.value,
-        });
-    }
+    // const handleChangeState=(e)=>{
+    //     setState({
+    //         ...state,
+    //         [e.target.name]:e.target.value,
+    //     });
+    // }
 
     const {onCreate} = React.useContext(dispatchContext);
 
@@ -155,3 +155,8 @@ const styles = StyleSheet.create({
     },
 })
 
+BulletinWriteScreen.propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired,
+    }).isRequired,
+  };
