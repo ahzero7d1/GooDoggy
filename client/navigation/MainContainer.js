@@ -15,6 +15,8 @@ import SubscribeDeleteScreen from './screens/SubscribeDeleteScreen';
 import HomeErrorScreen from './screens/HomeErrorScreen';
 import BulletinBoardScreen from './screens/BulletinBoardScreen';
 import ServiceSurveyScreen from './screens/ServiceSurveyScreen';
+import BulletinEdit from './screens/BulletinEdit';
+import BulletinWriteScreen from './screens/BulletinWriteScreen';
 
 //Screen names
 const homeName = '홈';
@@ -102,6 +104,8 @@ export default function MainContainer(){
                 <Stack.Screen name="Home_Error_Page" component={HomeErrorScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="Red_Delete" component={SubscribeDeleteScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="Survey_Page" component={ServiceSurveyScreen} options={{headerShown: false}} />
+                <Stack.Screen name="BulletinEdit" component={BulletinEdit} options={{headerShown: false}}/>
+                <Stack.Screen name="BulletinWrite" component={BulletinWriteScreen} options={{headerShown: false}}/>
             </Stack.Navigator>
         </NavigationContainer>
     )
